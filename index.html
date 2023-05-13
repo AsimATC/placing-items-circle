@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;900&display=swap');
+
+        :root {
+            --radius: 25vmin;
+        }
+
+        html {
+            height: 100%;
+            display: flex;
+        }
+
+        body {
+            margin: auto;
+            font-family: 'Poppins', sans-serif;
+            ;
+        }
+
+        .circle {
+            display: grid;
+            grid-template-areas: "layer";
+            place-items: center;
+            /* background: #185adb !important;*/
+            border-radius: 50%;
+            width: calc(2 * var(--radius));
+            height: calc(2 * var(--radius));
+            transform: scale(.8) !important;
+        }
+
+        .stat {
+
+            grid-area: layer;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+
+            display: grid;
+            place-items: center;
+            border: 2px dotted #ffc947;
+
+
+            --d: calc(var(--i) / var(--total));
+
+            --r-offset: -0.25turn;
+            --r-amount: 1turn;
+            --r: calc((var(--r-amount) * var(--d)) + var(--r-offset));
+            --transform: rotate(var(--r)) translate(var(--radius)) rotate(calc(-1 * var(--r)));
+
+            transform: var(--transform) scale(.8);
+        
+            transition: transform .5s ease-in-out;
+            cursor: pointer;
+
+            background-color: #ffffff;
+            border: unset;
+        }
+
+        .stat .circle:hover {
+            --radius: calc(-20vmin);
+            --r-offset: -1.75turn;
+        }
+
+
+        .swiper {
+            width: 100vw;
+            height: 100%;
+        }
+
+        .circle .swiper-slide {
+            grid-area: layer;
+            width: auto;
+            height: auto;
+
+            display: grid;
+            place-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 96px;
+            height: 96px;
+            object-fit: cover;
+        }
+
+        .stat {
+            padding: 0px;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        }
+
+        .stat img {
+            width: 46px;
+            height: 46px;
+            object-fit: contain;
+            transition: 500ms linear;
+        }
+
+        .swiper-slide-thumb-active .stat {
+            transform: var(--transform) scale(1);
+            opacity: 1;
+        }
+
+        .swiper-slide-thumb-active .stat img {
+            transform: scale(1.2);
+        }
+
+
+        /* Sayfa Grid Yapısı Buradan Yapılyır*/
+        .main-slider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 4px;
+            background: #ffc947;
+            color: #ffffff;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .circle .banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-30%, -20%);
+            width: 500px !important;
+            z-index: -1;
+        }
+
+        .circle .swiper-slide:nth-of-type(1)::after {
+            content: "";
+            position: absolute;
+            width: 480px;
+            height: 490px;
+            left: -40%;
+            top: -200%;
+            border: 2px dotted #ffc947;
+            border-radius: 100%;
+            z-index: -9 ;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+    <!-- Swiper -->
+    <div class="main-slider">
+
+        <div thumbsSlider="" class="swiper mySwiper">
+            <!-- Toplam Değeri Olacaktır Değer kadar da altta değişken olacaktır -->
+            <div class="swiper-wrapper circle" style="--total: 10">
+                <img src="https://img.freepik.com/free-vector/character-his-free-time-postponed-work_23-2148515323.jpg?w=360"
+                    alt="" class="banner">
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:1">
+                        <img src="https://cdn-icons-png.flaticon.com/128/993/993723.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:2">
+                        <img src="https://cdn-icons-png.flaticon.com/128/5968/5968764.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:3">
+                        <img src="https://cdn-icons-png.flaticon.com/128/733/733585.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:4">
+                        <img src="https://cdn-icons-png.flaticon.com/128/684/684908.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:5">
+                        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:6">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3670/3670151.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:7">
+                        <img src="https://cdn-icons-png.flaticon.com/128/833/833472.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:8">
+                        <img src="https://cdn-icons-png.flaticon.com/128/4138/4138124.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:9">
+                        <img src="https://cdn-icons-png.flaticon.com/128/2111/2111646.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="stat" style="--i:10">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3652/3652191.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+                <div class="swiper-slide">
+                    <h2 class="bold">METİN BAŞLIĞI OLACAKTIR</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum eius nulla repudiandae voluptatum
+                        ratione fugit nisi autem quas voluptates ducimus.</p>
+                    <div class="btn">DEVAM ET</div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper2 = new Swiper(".mySwiper2", {
+            spaceBetween: 10,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+                swiper: swiper,
+            },
+        });
+    </script>
+</body>
+
+</html>
