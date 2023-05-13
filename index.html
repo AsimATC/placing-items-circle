@@ -41,7 +41,7 @@
         }
 
         .stat {
-
+            opacity: .5;
             grid-area: layer;
             width: 96px;
             height: 96px;
@@ -59,7 +59,7 @@
             --r: calc((var(--r-amount) * var(--d)) + var(--r-offset));
             --transform: rotate(var(--r)) translate(var(--radius)) rotate(calc(-1 * var(--r)));
 
-            transform: var(--transform) scale(.8);
+            transform: var(--transform);
 
             transition: transform .5s ease-in-out;
             cursor: pointer;
@@ -120,6 +120,7 @@
         .swiper-slide-thumb-active .stat {
             transform: var(--transform) scale(1);
             opacity: 1;
+            z-index: 999;
         }
 
         .swiper-slide-thumb-active .stat img {
@@ -171,6 +172,10 @@
             z-index: -9;
         }
 
+        .mySwiper {
+            transition: 500ms linear;
+        }
+
         .main-slider .mySwiper2 {
             display: flex;
             justify-content: center;
@@ -188,24 +193,19 @@
             width: 320px;
             height: 320px;
         }
+
         .mySwiper2 .swiper-slide {
+            transform: translateX(52%);
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
+            transition: 500ms linear;
         }
-        .mySwiper2 .swiper-slide-next{
-          transform: translateX(-152%);
-          opacity: 0;
-          transition: 500ms linear;
-        }
-        .mySwiper2 .swiper-slide-prev{
-            transform: translateX(52%);
-          opacity: 0;
-          transition: 500ms linear;
-        }
-        .mySwiper2 .swiper-slide-active{
+
+        .mySwiper2 .swiper-slide-active {
             opacity: 1;
+            transform: translateX(0);
         }
     </style>
 
@@ -222,61 +222,62 @@
         <div thumbsSlider="" class="swiper mySwiper">
             <!-- Toplam Değeri Olacaktır Değer kadar da altta değişken olacaktır -->
             <div class="swiper-wrapper circle" style="--total: 10">
-                <div class="swiper-slide">
+                <!-- Onclicklerde 10 madde var ise 360/10 olarak değerler yazılmakdatır 10. item de 360 denk gelmesi gerekiyor -->
+                <div class="swiper-slide" onclick="rotate(36)">
                     <div class="stat" style="--i:1">
                         <img src="https://cdn-icons-png.flaticon.com/128/993/993723.png" alt="">
                         <h5>İcon Başlığı</h5>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" onclick="rotate(72)">
                     <div class="stat" style="--i:2">
                         <img src="https://cdn-icons-png.flaticon.com/128/5968/5968764.png" alt="">
                         <h5>İcon Başlığı</h5>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" onclick="rotate(108)">
                     <div class="stat" style="--i:3">
                         <img src="https://cdn-icons-png.flaticon.com/128/733/733585.png" alt="">
                         <h5>İcon Başlığı</h5>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" onclick="rotate(144)">
                     <div class="stat" style="--i:4">
                         <img src="https://cdn-icons-png.flaticon.com/128/684/684908.png" alt="">
                         <h5>İcon Başlığı</h5>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" onclick="rotate(180)">
                     <div class="stat" style="--i:5">
                         <img src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" alt="">
                         <h5>İcon Başlığı</h5>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" onclick="rotate(216)">
                     <div class="stat" style="--i:6">
                         <img src="https://cdn-icons-png.flaticon.com/128/3670/3670151.png" alt="">
                         <h5>İcon Başlığı</h5>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" onclick="rotate(252)">
                     <div class="stat" style="--i:7">
                         <img src="https://cdn-icons-png.flaticon.com/128/833/833472.png" alt="">
                         <h5>İcon Başlığı</h5>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" onclick="rotate(288)">
                     <div class="stat" style="--i:8">
                         <img src="https://cdn-icons-png.flaticon.com/128/4138/4138124.png" alt="">
                         <h5>İcon Başlığı</h5>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" onclick="rotate(324)">
                     <div class="stat" style="--i:9">
                         <img src="https://cdn-icons-png.flaticon.com/128/2111/2111646.png" alt="">
                         <h5>İcon Başlığı</h5>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" onclick="rotate(360)">
                     <div class="stat" style="--i:10">
                         <img src="https://cdn-icons-png.flaticon.com/128/3652/3652191.png" alt="">
                         <h5>İcon Başlığı</h5>
@@ -343,6 +344,9 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
     <script>
         var swiper = new Swiper(".mySwiper", {
             spaceBetween: 10,
@@ -360,6 +364,19 @@
                 swiper: swiper,
             },
         });
+
+
+
+        /*
+          if ($('.swiper-slide').hasClass('swiper-slide-thumb-active')) {
+              alert("hello");
+          }
+        */
+
+        function rotate(rotate) {
+            $(".mySwiper").css("transform", "rotate(-" + rotate + "deg)")
+            $(".mySwiper .stat").css("transform", "var(--transform) scale(1) rotate(" + rotate + "deg)")
+        }
     </script>
 </body>
 
