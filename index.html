@@ -155,9 +155,10 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-30%, -20%);
-            width: 500px !important;
-            z-index: -1;
+            transform: translate(-50%, -50%);
+            height: 240px;
+            width: 240px;
+            transition: 500ms linear;
         }
 
         .circle .swiper-slide:nth-of-type(1)::after {
@@ -177,6 +178,7 @@
         }
 
         .main-slider .mySwiper2 {
+            opacity: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -222,6 +224,7 @@
         <div thumbsSlider="" class="swiper mySwiper">
             <!-- Toplam Değeri Olacaktır Değer kadar da altta değişken olacaktır -->
             <div class="swiper-wrapper circle" style="--total: 10">
+                <img src="https://cdn-icons-png.flaticon.com/128/993/993723.png" alt="" class="banner">
                 <!-- Onclicklerde 10 madde var ise 360/10 olarak değerler yazılmakdatır 10. item de 360 denk gelmesi gerekiyor -->
                 <div class="swiper-slide" onclick="rotate(36)">
                     <div class="stat" style="--i:1">
@@ -375,6 +378,7 @@
 
         function rotate(rotate) {
             $(".mySwiper").css("transform", "rotate(-" + rotate + "deg)")
+            $(".mySwiper .banner").css("transform", "translate(-50%, -50%) rotate(" + rotate + "deg)")
             $(".mySwiper .stat").css("transform", "var(--transform) scale(1) rotate(" + rotate + "deg)")
         }
     </script>
